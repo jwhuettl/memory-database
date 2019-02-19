@@ -8,10 +8,10 @@
 void printRecord(record * rp) {
   // prints info from record (rp)
 
-  fprintf(stdout, "  title:  %s", rp->title);
-  fprintf(stdout, "  author: %s", rp->author);
-  fprintf(stdout, "  genre:  %s", rp->genre);
-  fprintf(stdout, "  year:   %s\n\n", rp->year);
+  fprintf(stdout, "  title: %s", rp->title);
+  fprintf(stdout, "  by:    %s", rp->by);
+  fprintf(stdout, "  genre: %s", rp->genre);
+  fprintf(stdout, "  year:  %s\n\n", rp->year);
 } // printRecord
 
 record * createNew() {
@@ -24,22 +24,22 @@ record * createNew() {
 
   // error check all fgets statements
 
-  fprintf(stdout, "  title:  ");
+  fprintf(stdout, "  title: ");
   if (fgets(cn->title, 128, stdin) == NULL) {
     perror("fgets error: ");
   }
 
-  fprintf(stdout, "  author: ");
-  if (fgets(cn->author, 128, stdin) == NULL) {
+  fprintf(stdout, "  by:    ");
+  if (fgets(cn->by, 128, stdin) == NULL) {
     perror("fgets error: ");
   }
 
-  fprintf(stdout, "  genre:  ");
+  fprintf(stdout, "  genre: ");
   if (fgets(cn->genre, 128, stdin) == NULL) {
     perror("fgets error: ");
   }
 
-  fprintf(stdout, "  year:   ");
+  fprintf(stdout, "  year:  ");
   if (fgets(cn->year, 5, stdin) == NULL) {
     perror("fgets error: ");
   }
@@ -106,3 +106,28 @@ void printAll(record * rp) {
 
 } // printAll
 
+
+// selective delete function 
+
+record * selDel(record * rp, int s) {
+  // deletes record s in database rp
+  // user selects a number which then will be deleted
+
+  copybase = (record *) calloc(counter - 1, SIZE);
+  copymovr = copybase;
+
+  for (int i = 0; i < counter; i++) {
+    if ((i + 1) == s) {
+      // record found skipping to delete
+      rp++; 
+    } 
+    else {
+      memcpy(copymovr, rp, SIZE);
+      copymovr++;
+      rp++;
+    }
+  }
+
+  counter--;
+  return copybase;
+} // selDel

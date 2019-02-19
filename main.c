@@ -4,9 +4,9 @@
 #include "db.h"
 
 int counter = 0;
-int sel;
+int sel, seldelint;
 
-void main() {
+int main() {
 
   fprintf(stdout, "memory database ... \n\n");
 
@@ -30,17 +30,24 @@ void main() {
         database = add(database, rn);
         break;
       case 2 : // del
-        database = del(database);
+        fprintf(stdout, "enter record number: ");
+	      fscanf(stdin, "%d", &seldelint);
+	      database = selDel(database, seldelint);
         break;
       case 3 : // printAll
         printAll(database);
         break;
       case 4 : // exit
-        return;
+        return 0;
+
+      // new features / testing
 
       default :
         fprintf(stdout, "error: invalid choice.\n");
         break;
     }
   }
+
+  return 1; // if 1, something weird has happened
+
 } // main

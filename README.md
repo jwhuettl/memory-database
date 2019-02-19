@@ -19,9 +19,12 @@ The program works via a command line interface comprised of a menu and other bas
 The add function creates a copy of the database with a size of counter + 1, and then copies the old database into the new one with memcpy. There is a final memcpy which copies the newly created record to the copied database (aka copybase), the copied database is then returned. 
 
 ##### Delete (del)
-The delete function operates much like the add function but in reverse. It allocates a copy of the database with size of counter - 1 and the copies over the contents of the old database. This simply removes the last entry in the database by not copying it over and the overwriting the database pointer. 
+The delete function operates much like the add function but in reverse. It allocates a copy of the database with size of counter - 1 and the copies over the contents of the old database. This simply removes the last entry in the database by not copying it over and the overwriting the database pointer. While it has been replaced (by the selective delete function), it will remain in the program for testing purposes and possible later use. 
 
->NOTE: As of 02/18/19, the delete function is only able to remove the last record but, in the future there will be a selective delete function.
+>~~NOTE: As of 02/18/19, the delete function is only able to remove the last record but, in the future there will be a selective delete function.~~
+
+##### Selective Delete (selDel)
+The selective delete function replaces the old delete function allowing the user to select which record to delete. The function works by simply skipping over the record selected when it reaches it, and copying the rest of the records to the new database (aka copybase). The user is prompt to enter an integer which corresponds to the index at which the record resides in the block of memory. To make it simpler, in this case the indeces start at 1 so that more people will understand which record they need to choose. 
 
 ##### Printing (printAll)
 As of right now the only way to view the contents of the database is via the printAll function, which simply does pointer arithmetic to move through the database, and print out the data held by each record. 
@@ -31,14 +34,14 @@ As of right now the only way to view the contents of the database is via the pri
 - main.c (main file)
 - functions.c (functions file)
 - README.md (this file)
+- makefile (makefile)
 
-### Compliation Notes
-
-1. Compile by running "gcc main.c functions.c -o db"
+###  Notes
+- Use the makefile to compile and clean up
 
 
 ### Planned Additions / To Do's
-[] Selective delete
+[x] Selective delete
 
 [] Save to formatted file
 
