@@ -20,7 +20,7 @@ record * createNew() {
 
   record * cn = (record *) calloc(1, SIZE);
 
-  fprintf(stdout, "\ncreating new record ...\n");
+  fprintf(stdout, "creating new record ...\n");
 
   // error check all fgets statements
 

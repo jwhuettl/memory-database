@@ -19,8 +19,6 @@ void main() {
     fprintf(stdout, "3. print all records\n");
     fprintf(stdout, "4. exit\n");
 
-    fprintf(stdout, "selection: ");
-
     fscanf(stdin, "%d", &sel);
     getchar();
 
