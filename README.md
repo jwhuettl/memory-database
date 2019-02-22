@@ -23,11 +23,17 @@ The delete function operates much like the add function but in reverse. It alloc
 
 >~~NOTE: As of 02/18/19, the delete function is only able to remove the last record but, in the future there will be a selective delete function.~~
 
-##### Selective Delete (selDel)
-The selective delete function replaces the old delete function allowing the user to select which record to delete. The function works by simply skipping over the record selected when it reaches it, and copying the rest of the records to the new database (aka copybase). The user is prompt to enter an integer which corresponds to the index at which the record resides in the block of memory. To make it simpler, in this case the indeces start at 1 so that more people will understand which record they need to choose. 
-
 ##### Printing (printAll)
 As of right now the only way to view the contents of the database is via the printAll function, which simply does pointer arithmetic to move through the database, and print out the data held by each record. 
+
+### Additional Functions
+
+##### Selective Delete (selDelete) (added 02/19/19)
+The selective delete function replaces the old delete function allowing the user to select which record to delete. The function works by simply skipping over the record selected when it reaches it, and copying the rest of the records to the new database (aka copybase). The user is prompt to enter an integer which corresponds to the index at which the record resides in the block of memory. To make it simpler, in this case the indeces start at 1 so that more people will understand which record they need to choose. 
+
+##### Saving (saveToFile)
+To save the database in its current state, the user can call the saveToFile function. This function steps through the database and writes the data of each record to a buffer and then to a file called "db.txt". Each field is separated by commas and each record has its own line in the file. The header of the file is the number of records in the database and the size of the database. 
+
 
 ### Necessary Files
 - db.h (header file)
@@ -41,10 +47,12 @@ As of right now the only way to view the contents of the database is via the pri
 
 
 ### Planned Additions / To Do's
-[x] Selective delete
+[x] Selective delete (added 02/19/2019)
 
-[] Save to formatted file
+[x] Save to formatted file (added 02/20/2019)
 
-[] Read from formatted file
+[ ] Read from formatted file
 
-[] Support for multiple databases
+[ ] Support for multiple databases
+
+[ ] Sorting by various fields

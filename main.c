@@ -4,7 +4,9 @@
 #include "db.h"
 
 int counter = 0;
+bool saved = false;
 int sel, seldelint;
+char opt;
 
 int main() {
 
@@ -17,7 +19,8 @@ int main() {
     fprintf(stdout, "1. add record.\n");
     fprintf(stdout, "2. delete record\n");
     fprintf(stdout, "3. print all records\n");
-    fprintf(stdout, "4. exit\n");
+    fprintf(stdout, "4. save all records\n");
+    fprintf(stdout, "5. exit\n");
 
     fprintf(stdout, "selection: ");
 
@@ -37,7 +40,10 @@ int main() {
       case 3 : // printAll
         printAll(database);
         break;
-      case 4 : // exit
+      case 4 : // saveToFile
+        saveToFile(database);
+        break;
+      case 5 : // exit
         return 0;
 
       // new features / testing

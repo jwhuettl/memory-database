@@ -8,9 +8,9 @@
 void printRecord(record * rp) {
   // prints info from record (rp)
 
-  fprintf(stdout, "  title: %s", rp->title);
-  fprintf(stdout, "  by:    %s", rp->by);
-  fprintf(stdout, "  genre: %s", rp->genre);
+  fprintf(stdout, "  title: %s\n", rp->title);
+  fprintf(stdout, "  by:    %s\n", rp->by);
+  fprintf(stdout, "  genre: %s\n", rp->genre);
   fprintf(stdout, "  year:  %s\n\n", rp->year);
 } // printRecord
 
@@ -19,32 +19,30 @@ record * createNew() {
   // calls fgets, cn is the returned record
 
   record * cn = (record *) calloc(1, SIZE);
+  char t[128], b[128], g[128], y[5];
 
   fprintf(stdout, "\ncreating new record ...\n");
 
-  // error check all fgets statements
-
+  // 
+  
   fprintf(stdout, "  title: ");
-  if (fgets(cn->title, 128, stdin) == NULL) {
-    perror("fgets error: ");
-  }
+  fgets(cn->title, 128, stdin);
+  strtok(cn->title, "\n");       // removing \n at end 
 
   fprintf(stdout, "  by:    ");
-  if (fgets(cn->by, 128, stdin) == NULL) {
-    perror("fgets error: ");
-  }
+  fgets(cn->by, 128, stdin);
+  strtok(cn->by, "\n");          // removing \n at end 
 
   fprintf(stdout, "  genre: ");
-  if (fgets(cn->genre, 128, stdin) == NULL) {
-    perror("fgets error: ");
-  }
+  fgets(cn->genre, 128, stdin);
+  strtok(cn->genre, "\n");       // removing \n at end 
 
   fprintf(stdout, "  year:  ");
-  if (fgets(cn->year, 5, stdin) == NULL) {
-    perror("fgets error: ");
-  }
-
+  fgets(cn->year, 5, stdin);
+  strtok(cn->year, "\n");        // removing \n at end 
+  
   return cn;
+  
 } // createNew
 
 // basic functions
@@ -131,3 +129,28 @@ record * selDel(record * rp, int s) {
   counter--;
   return copybase;
 } // selDel
+
+// saving to file
+
+int saveToFile(record * rp) {
+  // saves to formatted .txt file
+
+  FILE * fp = fopen("db.txt", "w");
+
+  datamovr = rp;
+  char data[389];
+  
+
+  fprintf(fp, "%d %d\n", counter, (SIZE * counter));
+  fprintf(fp, "tile, by, genre, year\n");
+
+  for (int i = 0; i < counter; i++) {
+    sprintf(data, "%s,%s,%s,%s", datamovr->title, datamovr->by, datamovr->genre, datamovr->year);
+    fprintf(fp, "%s\n", data);
+    datamovr++;
+  }
+
+  fclose(fp);
+  return 0;
+  
+} // saveToFile

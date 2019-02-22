@@ -10,4 +10,6 @@ dbmake: main.c functions.c
 
 # cleaning up
 clean: 
-	$(RM) db *.o *.~
+	$(RM) db db.txt *.o *.~
+
+# NOTE: .txt file will be deleted on clean
