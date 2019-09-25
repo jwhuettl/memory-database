@@ -10,6 +10,8 @@ Memory-Database is a psuedo-database for storing records such as books or albums
 ## Purpose
 The purpose of Memory-Database is to showcase my knowledge of the C programming language and to get used to using git/github. It also serves as a way to catalog my books and vinyl records as I add functionality to the program. 
 
+>DISCLAIMER: This is probably the worst way to do this ever, but the basis of this was an assignment and I thought it would be an interesting project to continue. 
+
 ## How It Works
 The program works via a command line interface comprised of a menu and other basic user input. Operations can be selected when the menu appears by inputting the corresponding number. In terms of actual functionality, the basis of the database is looped calls of memcpy. There are also calloc calls that get allocate the proper amount of memory for each copy of the database. 
 
@@ -34,6 +36,17 @@ The selective delete function replaces the old delete function allowing the user
 ##### Saving (saveToFile)
 To save the database in its current state, the user can call the saveToFile function. This function steps through the database and writes the data of each record to a buffer and then to a file called "db.txt". Each field is separated by commas and each record has its own line in the file. The header of the file is the number of records in the database and the size of the database. 
 
+### Functions in Testing
+
+##### Multiple files / Saving to Named File
+To allow for the use of multiple databases and allow for some level of portability (POSIX systems only), it is necessary to allow the user to name the file and thus the database. When saving the database, users will be prompted to enter a name and then a filename will be created and database will be saved to that file. 
+
+>   The filename will be formatted as such:
+>       db_"filename".txt
+
+This allows program to find which database is present easier and reduces clutter within the save file. In many ways, this simplifies the program and allows users to directly see which databases are present and share databases if they desire. 
+
+
 
 ### Necessary Files
 - db.h (header file)
@@ -54,5 +67,10 @@ To save the database in its current state, the user can call the saveToFile func
 [ ] Read from formatted file
 
 [ ] Support for multiple databases
+
+    [x] naming convention of database files
+    
+    [ ] reading from file given database name
+
 
 [ ] Sorting by various fields

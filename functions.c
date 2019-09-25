@@ -154,3 +154,39 @@ int saveToFile(record * rp) {
   return 0;
   
 } // saveToFile
+
+int saveToNamedFile(record * rp) {
+  // saves to named file to eventually allow for multiple databases
+  
+  char[128] usrfn; // user file name
+
+  fprintf(stdout, "database name: ");
+  fgets(usrfn, 120, stdin);
+
+
+  // creating naming convention for saved files
+  char[128] filename = "db_";
+  strcat(filename, userfn);
+  strcat(filename, '.txt');
+
+  fprintf(stdout, '%s', filename);
+
+  FILE * fp = fopen(filename, "w");
+
+  datamovr = rp;
+  char data[389];
+  
+
+  fprintf(fp, "%d %d\n", counter, (SIZE * counter));
+  fprintf(fp, "tile, by, genre, year\n");
+
+  for (int i = 0; i < counter; i++) {
+    sprintf(data, "%s,%s,%s,%s", datamovr->title, datamovr->by, datamovr->genre, datamovr->year);
+    fprintf(fp, "%s\n", data);
+    datamovr++;
+  }
+
+  fclose(fp);
+  return 0;
+  
+}
